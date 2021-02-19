@@ -1,0 +1,105 @@
+JQuery高级
+    1.动画
+        1.三种方式显示和隐藏元素
+            参数:
+                1.speed:动画速度.三个预定义的值("slow","normal","fast")或表示动画市场的毫秒数值(如:1000)
+                2.easing:用来指定切换效果,默认是"swing",可用参数"linear"
+                    *swing:动画执行时效果是先慢后快再慢
+                    *liner:动画执行时效果是匀速的
+                3.fn:在动画完成时执行的函数,每个元素执行一次
+            1.默认显示和隐藏方式(缩放)
+                1.show([speed],[easing],[fn])
+                2.hide([speed],[easing],[fn])
+                3.toggle([speed],[easing],[fn]):切换
+            2.滑动显示和隐藏方式(上下滑动)
+                1.slideDown([speed],[easing],[fn])
+                2.slideUp([speed],[easing],[fn])
+                3.slideToggle([speed],[easing],[fn])
+            3.淡入淡出显示和隐藏方式(淡入淡出)
+                1.fadeIn([speed],[easing],[fn])
+                2.fadeout([speed],[easing],[fn])
+                3.fadeToggle([speed],[easing],[fn])
+        2.遍历
+            1.js的遍历方式
+                for
+            2.jq的遍历方式
+                1.jq对象.each(callback)
+                    $("").each(function(index,element){
+                        if("指定值" === $(element).html()){
+                            //return false //返回值为false时,结束循环
+                            //return true  //返回值时true时,跳过本次循环,执行下次循环
+                        }
+                        console.log(index+":"+element)
+                    })
+
+                2.$.each(object,[callback]) object可直接传js对象
+                    $.each(object,function(){
+                        console.log($(this).html())
+                    })
+
+                3.for..of
+                    注:3.0版本之后提供的方式
+                    for(.. of object){
+                        console.log(..)
+                    }
+
+        3.事件绑定
+            1.jq标准的绑定方式
+                jq对象.事件方法(回调函数)
+                    $("").click(function(){}).focus(function(){}) -> 支持链式写法
+                    *绑定事件时若没有指定回调函数,执行时则会直接触发指定事件
+            2.on绑定事件/off解除绑定
+                jq对象.on("事件名称",回调函数)
+                    $("").on("click",function(){})
+                jq对象.off("事件名称")
+                    $("").off("click")
+                    *解除绑定时若没有指定事件名称,执行时会解除该对象所有的绑定事件
+            3.事件切换:toggle
+                jq对象.toggle(fn1,fn2,..,fnn)
+                    $("").toggle(function(){},function(){},...)
+                    *第一次触发执行第一个函数,第二次触发执行第二个函数,以此类推..
+                    *1.9版本后toggle已经被删除
+        4.案例
+        5.插件:增强jq的功能
+            实现的方式:
+                1.$.fn.extend(object)
+                    *增强通过jq获取的对象的功能 $("")
+                    例:复选按钮的全选与取消
+                        定义:
+                            $.fn.extend({
+                                check:function(){
+                                    this.prop("checked",true)
+                                },
+                                uncheck:function(){
+                                    this.prop("checked",false)
+                                }
+                            })
+                        使用:
+                            $("input[type='checkbox']").check()
+                            $("input[type='checkbox']").uncheck()
+                2.$.extend(object)
+                    *增强jq对象自身的功能 $/jQuery
+                    例:
+                        定义:
+                            $.extend({
+                                max:function(a,b){
+                                    return a>b?a:b
+                                },
+                                min:function(a,b){
+                                    return a<b?a:b
+                                }
+                            })
+                        使用:
+                            $.max(1,2)
+                            $.min(1,2)
+
+
+
+
+
+
+
+
+
+
+

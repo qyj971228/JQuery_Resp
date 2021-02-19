@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+    <div id="div1">div1</div>
+    <div id="div2">div2</div>
+    <script>
+        //1.通过js方式来获取名称叫div的所有html元素
+        var divs = document.getElementsByTagName("div")
+        console.log(divs)
+        //获取标签体内容
+        for (var i = 0; i < divs.length; i++) {
+            divs[i].innerHTML = "a"
+            //js -> jq:$(js对象)
+            $(divs[i]).html("c")
+        }
+
+        //2.通过jq方式来获取名称叫div的所有html元素
+        var $divs = $("div")
+        console.log($divs)
+        //获取标签体内容
+        $divs.html("b")
+        //jq -> js:jq对象[索引] | jq对象.get(索引)
+        $divs[0].innerHTML = "d"
+        $divs.get(0).innerHTML = "d"
+
+
+        /*
+            1.jq在操作时更加方便
+            2.jq对象和js对象方法不通用
+            3.相互转换:
+                1.jq -> js:jq对象[索引] | jq对象.get(索引)
+                2.js -> jq:$(js对象)
+         */
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+    <div id="div1" title="t1">div1</div>
+    <div id="div2" title="t2">div2</div>
+    <div id="div3" title="t2">div3</div>
+    <input type="button" id="btn1">
+    <script>
+        $("#btn1").click(function (){
+            $("div[id='div3'][title='t2']").css("backgroundColor","red")
+        })
+        $.extend({
+            max:function(a,b){
+                return a>b?a:b
+            },
+            min:function(a,b){
+                return a<b?a:b
+            }
+        })
+        alert($.max(1,2))
+        alert($.min(1,2))
+    </script>
+</body>
+</html>
